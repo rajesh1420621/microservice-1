@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: microservice-1
+  name: microservice-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: microservice-1
+    spec:
+      containers:
+      - image: apaspxp/microservice-1:latest
+        name: microservice-1
+        resources: {}
+status: {}
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: microservice-1
+  name: microservice-1
+spec:
+  ports:
+  - name: 8001-8001
+    port: 8001
+    protocol: TCP
+    targetPort: 8001
+  selector:
+    app: microservice-1
+  type: ClusterIP
+status:
+  loadBalancer: {}
